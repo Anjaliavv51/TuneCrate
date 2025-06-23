@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 350px;
+      height: 500px;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .background-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .music-symbol {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 20px;
+      animation: float 8s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(500px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-50px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .file-input-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .file-input {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .file-input:hover {
+      border-color: #4ecdc4;
+      background: rgba(78, 205, 196, 0.1);
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    .player-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .track-info {
+      text-align: center;
+      margin-bottom: 20px;
+      min-height: 60px;
+    }
+
+    .track-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .track-duration {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .progress-container {
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .control-btn {
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .play-btn {
+      width: 55px;
+      height: 55px;
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+      font-size: 22px;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+    }
+
+    .volume-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .volume-slider {
+      flex: 1;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #4ecdc4;
+      cursor: pointer;
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .option-btn {
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      background: transparent;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .option-btn.active {
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+      border-color: transparent;
+    }
+
+    .option-btn:hover {
+      border-color: #4ecdc4;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .status {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-animation" id="backgroundAnimation"></div>
+  
+  <div class="container">
+    <div class="header">
+      <h1>🎵 Dark Music Player</h1>
+    </div>
+
+    <div class="file-input-wrapper">
+      <label for="fileInput" class="file-input">
+        📁 Add Music Files (MP3/MP4) - Multiple Selection
+      </label>
+      <input type="file" id="fileInput" accept="audio/*,video/*" multiple>
+    </div>
+
+    <div class="player-section">
+      <div class="track-info">
+        <div class="track-title" id="trackTitle">No tracks in playlist</div>
+        <div class="track-duration" id="trackDuration">00:00 / 00:00</div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="control-btn" id="prevBtn">⏮</button>
+        <button class="control-btn play-btn" id="playBtn">▶</button>
+        <button class="control-btn" id="nextBtn">⏭</button>
+      </div>
+
+      <div class="volume-container">
+        <span>🔊</span>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+        <span id="volumeValue">70%</span>
+      </div>
+
+      <div class="options">
+        <button class="option-btn" id="loopBtn">🔁 Loop</button>
+        <button class="option-btn" id="shuffleBtn">🔀 Shuffle</button>
+      </div>
+
+      <div class="status" id="status">Ready to add music files</div>
+    </div>
+  </div>
+
+  <audio id="audioPlayer" preload="auto"></audio>
+  <script src="popup.js"></script>
+</body>
+</html>

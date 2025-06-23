@@ -1,5 +1,5 @@
 
-# Dark Music Player Chrome Extension
+# Music Player Chrome Extension
 
 A beautiful, dark-themed Chrome extension for playing music files with flowing UI effects and comprehensive audio controls.
 
