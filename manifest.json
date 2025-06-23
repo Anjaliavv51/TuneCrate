@@ -1,9 +1,9 @@
 
 {
   "manifest_version": 3,
-  "name": "Dark Music Player",
+  "name": "Tune Crate",
   "version": "1.0",
-  "description": "A dark-themed music player extension with flowing UI effects",
+  "description": "A crate of your favorite tracks",
   "permissions": [
     "storage",
     "activeTab"
