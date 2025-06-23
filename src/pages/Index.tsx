@@ -55,33 +55,6 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <div className="music-card p-6 text-center">
-            <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-music-purple to-music-pink flex items-center justify-center">
-              <MusicIcon size={24} />
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-2">Multi-Format Support</h3>
-            <p className="text-white/70">Play MP3, MP4, WAV, and other popular audio formats</p>
-          </div>
-
-          <div className="music-card p-6 text-center">
-            <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-music-blue to-music-purple flex items-center justify-center">
-              <div className="w-6 h-6 rounded-full bg-white/30" />
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-2">Advanced Controls</h3>
-            <p className="text-white/70">Loop, volume control, progress tracking, and more</p>
-          </div>
-
-          <div className="music-card p-6 text-center">
-            <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-music-pink to-music-blue flex items-center justify-center">
-              <div className="w-6 h-6 rounded-full bg-white/30" />
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-2">Beautiful Themes</h3>
-            <p className="text-white/70">Switch between dark and light modes seamlessly</p>
-          </div>
-        </div>
-
         {/* Main Audio Player */}
         <div className="max-w-2xl mx-auto">
           <AudioPlayer darkMode={darkMode} onThemeToggle={toggleTheme} />
