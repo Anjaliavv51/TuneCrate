@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="music-icon">🎵</div>
+            <h1>Music Player</h1>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+        </div>
+
+        <!-- File Input -->
+        <div class="file-section">
+            <input type="file" id="audioFile" accept="audio/*" class="file-input">
+            <label for="audioFile" class="file-label">Choose Audio File</label>
+        </div>
+
+        <!-- URL Input -->
+        <div class="url-section">
+            <input type="url" id="audioUrl" placeholder="Or enter audio URL..." class="url-input">
+            <button id="loadUrl" class="load-btn">Load</button>
+        </div>
+
+        <!-- Audio Player -->
+        <div class="player-section" id="playerSection" style="display: none;">
+            <div class="track-info">
+                <div class="track-name" id="trackName">No track loaded</div>
+            </div>
+
+            <audio id="audioPlayer" preload="metadata"></audio>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <span class="time" id="currentTime">0:00</span>
+                <input type="range" id="progressBar" class="progress-bar" min="0" max="100" value="0">
+                <span class="time" id="duration">0:00</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button id="playPauseBtn" class="control-btn">▶️</button>
+                <button id="stopBtn" class="control-btn">⏹️</button>
+                <button id="loopBtn" class="control-btn loop-btn">🔁</button>
+            </div>
+
+            <!-- Volume Control -->
+            <div class="volume-container">
+                <span>🔊</span>
+                <input type="range" id="volumeBar" class="volume-bar" min="0" max="100" value="50">
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
