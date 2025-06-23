@@ -1,24 +1,10 @@
 
 {
   "manifest_version": 3,
-  "name": "Music Player Chrome Extension",
+  "name": "Music Player",
   "version": "1.0",
-  "description": "A simple music player extension with dark/light mode and loop controls",
-  "permissions": [
-    "storage"
-  ],
+  "description": "Simple music player extension",
   "action": {
-    "default_popup": "popup.html",
-    "default_title": "Music Player",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
-  },
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "default_popup": "popup.html"
   }
 }
