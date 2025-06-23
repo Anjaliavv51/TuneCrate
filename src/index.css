@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,20 +38,19 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Music Player Theme - Light Mode */
+    --music-bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --music-bg-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --music-card-bg: rgba(255, 255, 255, 0.95);
+    --music-card-border: rgba(255, 255, 255, 0.2);
   }
 
   .dark {
@@ -89,6 +89,12 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Music Player Theme - Dark Mode */
+    --music-bg-primary: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+    --music-bg-secondary: linear-gradient(135deg, #8360c3 0%, #2ebf91 100%);
+    --music-card-bg: rgba(30, 30, 30, 0.95);
+    --music-card-border: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -99,5 +105,69 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .music-gradient-bg {
+    background: var(--music-bg-primary);
+    background-attachment: fixed;
+  }
+
+  .music-card {
+    background: var(--music-card-bg);
+    border: 1px solid var(--music-card-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .music-button {
+    @apply transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95;
+  }
+
+  .progress-bar {
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .progress-bar::-webkit-slider-track {
+    background: rgba(255, 255, 255, 0.3);
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  .progress-bar::-webkit-slider-thumb {
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #6366f1;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .progress-bar::-moz-range-track {
+    background: rgba(255, 255, 255, 0.3);
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+  }
+
+  .progress-bar::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #6366f1;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 }
