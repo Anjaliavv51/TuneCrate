@@ -9,24 +9,34 @@
       box-sizing: border-box;
     }
 
-    body {
-      width: 350px;
-      height: 500px;
+    html, body {
+      min-width: 350px;
+      min-height: 500px;
+      max-width: 100vw;
+      max-height: 100vh;
       background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
       color: #ffffff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
       position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    body {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      border-radius: 14px;
+      padding: 0;
     }
 
     .background-animation {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
-      z-index: 1;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .music-symbol {
@@ -56,45 +66,50 @@
     .container {
       position: relative;
       z-index: 2;
-      padding: 20px;
-      height: 100%;
+      padding: 24px 18px 18px 18px;
+      min-height: 500px;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .header h1 {
       font-size: 24px;
-      font-weight: 600;
+      font-weight: 700;
       background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      margin-bottom: 0;
     }
 
     .file-input-wrapper {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .file-input {
       width: 100%;
       padding: 12px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px dashed rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px dashed rgba(255, 255, 255, 0.25);
       border-radius: 10px;
       color: #ffffff;
       cursor: pointer;
       transition: all 0.3s ease;
       text-align: center;
+      font-size: 15px;
+      outline: none;
     }
 
-    .file-input:hover {
+    .file-input:hover, .file-input:focus {
       border-color: #4ecdc4;
-      background: rgba(78, 205, 196, 0.1);
+      background: rgba(78, 205, 196, 0.13);
     }
 
     #fileInput {
@@ -106,18 +121,19 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      min-height: 320px;
     }
 
     .track-info {
       text-align: center;
-      margin-bottom: 20px;
-      min-height: 60px;
+      margin-bottom: 16px;
+      min-height: 54px;
     }
 
     .track-title {
       font-size: 16px;
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -129,16 +145,17 @@
     }
 
     .progress-container {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .progress-bar {
       width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 3px;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 4px;
       overflow: hidden;
       cursor: pointer;
+      box-shadow: 0 1px 4px rgba(78,205,196,0.08);
     }
 
     .progress-fill {
@@ -153,15 +170,15 @@
       justify-content: center;
       align-items: center;
       gap: 15px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .control-btn {
-      width: 45px;
-      height: 45px;
+      width: 42px;
+      height: 42px;
       border: none;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.13);
       color: #ffffff;
       cursor: pointer;
       display: flex;
@@ -170,73 +187,80 @@
       font-size: 18px;
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
+      outline: none;
     }
 
-    .control-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.1);
+    .control-btn:focus, .control-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: scale(1.09);
     }
 
     .play-btn {
-      width: 55px;
-      height: 55px;
+      width: 54px;
+      height: 54px;
       background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
       font-size: 22px;
+      box-shadow: 0 2px 12px rgba(78,205,196,0.13);
     }
 
-    .play-btn:hover {
-      transform: scale(1.15);
-      box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+    .play-btn:focus, .play-btn:hover {
+      transform: scale(1.13);
+      box-shadow: 0 0 20px rgba(78, 205, 196, 0.22);
     }
 
     .volume-container {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .volume-slider {
       flex: 1;
       height: 4px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.18);
       border-radius: 2px;
       outline: none;
       cursor: pointer;
+      accent-color: #4ecdc4;
     }
 
     .volume-slider::-webkit-slider-thumb {
       appearance: none;
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       background: #4ecdc4;
       cursor: pointer;
+      border: none;
     }
 
     .options {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 16px;
+      margin-bottom: 8px;
     }
 
     .option-btn {
-      padding: 8px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 7px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
       border-radius: 20px;
       background: transparent;
       color: #ffffff;
       cursor: pointer;
       font-size: 12px;
       transition: all 0.3s ease;
+      outline: none;
     }
 
     .option-btn.active {
       background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
       border-color: transparent;
+      color: #fff;
     }
 
-    .option-btn:hover {
+    .option-btn:focus, .option-btn:hover {
       border-color: #4ecdc4;
     }
 
@@ -249,57 +273,59 @@
       color: rgba(255, 255, 255, 0.6);
       font-size: 14px;
       margin-top: 10px;
+      min-height: 18px;
+    }
+
+    /* Responsive for smaller popups */
+    @media (max-width: 400px) {
+      .container {
+        padding: 12px 4px;
+      }
+      .header h1 {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="background-animation" id="backgroundAnimation"></div>
-  
   <div class="container">
     <div class="header">
       <h1>🎵 Dark Music Player</h1>
     </div>
-
     <div class="file-input-wrapper">
-      <label for="fileInput" class="file-input">
+      <label for="fileInput" class="file-input" tabindex="0" aria-label="Add Music Files">
         📁 Add Music Files (MP3/MP4) - Multiple Selection
       </label>
       <input type="file" id="fileInput" accept="audio/*,video/*" multiple>
     </div>
-
     <div class="player-section">
       <div class="track-info">
         <div class="track-title" id="trackTitle">No tracks in playlist</div>
         <div class="track-duration" id="trackDuration">00:00 / 00:00</div>
       </div>
-
       <div class="progress-container">
         <div class="progress-bar" id="progressBar">
           <div class="progress-fill" id="progressFill"></div>
         </div>
       </div>
-
       <div class="controls">
-        <button class="control-btn" id="prevBtn">⏮</button>
-        <button class="control-btn play-btn" id="playBtn">▶</button>
-        <button class="control-btn" id="nextBtn">⏭</button>
+        <button class="control-btn" id="prevBtn" aria-label="Previous Track" tabindex="0">⏮</button>
+        <button class="control-btn play-btn" id="playBtn" aria-label="Play/Pause" tabindex="0">▶</button>
+        <button class="control-btn" id="nextBtn" aria-label="Next Track" tabindex="0">⏭</button>
       </div>
-
       <div class="volume-container">
         <span>🔊</span>
-        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70" aria-label="Volume">
         <span id="volumeValue">70%</span>
       </div>
-
       <div class="options">
-        <button class="option-btn" id="loopBtn">🔁 Loop</button>
-        <button class="option-btn" id="shuffleBtn">🔀 Shuffle</button>
+        <button class="option-btn" id="loopBtn" tabindex="0">🔁 Loop</button>
+        <button class="option-btn" id="shuffleBtn" tabindex="0">🔀 Shuffle</button>
       </div>
-
       <div class="status" id="status">Ready to add music files</div>
     </div>
   </div>
-
   <audio id="audioPlayer" preload="auto"></audio>
   <script src="popup.js"></script>
 </body>
