@@ -3,22 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>chrome-audio-flow-dark</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <meta property="og:title" content="chrome-audio-flow-dark" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <title>Tune Crate</title>
+    <meta name="description" content="A dark themed music player with flowing UI effects." />
+    <meta name="theme-color" content="#0c0c0c" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
-
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="background-animation" id="backgroundAnimation" aria-hidden="true"></div>
+
+    <main class="container" aria-label="Tune Crate music player">
+      <header class="header">
+        <h1>🎵 Tune Crate</h1>
+      </header>
+
+      <div class="file-input-wrapper">
+        <label for="fileInput" class="file-input">
+          📁 Add Music Files (MP3/MP4) - Multiple Selection
+        </label>
+        <input type="file" id="fileInput" accept="audio/*,video/*" multiple />
+      </div>
+
+      <section class="player-section">
+        <div class="track-info" aria-live="polite">
+          <div class="track-title" id="trackTitle">No tracks in playlist</div>
+          <div class="track-duration" id="trackDuration">00:00 / 00:00</div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar" role="slider" aria-label="Seek track position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="control-btn" id="prevBtn" type="button" aria-label="Previous track">⏮</button>
+          <button class="control-btn play-btn" id="playBtn" type="button" aria-label="Play or pause">▶</button>
+          <button class="control-btn" id="nextBtn" type="button" aria-label="Next track">⏭</button>
+        </div>
+
+        <div class="volume-container">
+          <span aria-hidden="true">🔊</span>
+          <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70" aria-label="Volume" />
+          <span id="volumeValue" aria-live="polite">70%</span>
+        </div>
+
+        <div class="options">
+          <button class="option-btn" id="loopBtn" type="button" aria-pressed="false">🔁 Loop</button>
+          <button class="option-btn" id="shuffleBtn" type="button" aria-pressed="false">🔀 Shuffle</button>
+        </div>
+
+        <div class="status" id="status">Ready to add music files</div>
+      </section>
+
+      <audio id="audioPlayer" preload="auto"></audio>
+    </main>
+
+    <script src="./app.js" defer></script>
   </body>
 </html>

@@ -3,14 +3,14 @@
   "manifest_version": 3,
   "name": "Tune Crate",
   "version": "1.0",
-  "description": "A crate of your favorite tracks",
+  "description": "A dark themed music player with flowing UI effects",
   "permissions": [
     "storage",
     "activeTab"
   ],
   "action": {
     "default_popup": "./extension/popup.html",
-    "default_title": "Dark Music Player"
+    "default_title": "Tune Crate"
   },
   "background": {
     "service_worker": "./extension/background.js"
